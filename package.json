@@ -22,7 +22,7 @@
         "date-fns-jalali": "^3.6.0-0",
         "framer-motion": "^12.23.25",
         "lucide-react": "^0.555.0",
-        "moment-jalaali": "^2.10.0",
+        "moment-jalaali": "^0.10.4",
         "react": "^18.2.0",
         "react-chartjs-2": "^5.3.1",
         "react-date-object": "^2.1.9",
