@@ -10,6 +10,20 @@ import Register from './pages/auth/Register';
 import DailyLogForm from './pages/student/DailyLogForm';
 import DailyLogList from './pages/student/DailyLogList';
 import TakeExam from './pages/student/TakeExam';
+import ExamResults from './pages/student/ExamResults';
+import WeeklyResources from './pages/student/WeeklyResources';
+import ResourceList from './pages/admin/ResourceList';
+import LandingPage from './pages/landing/LandingPage';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import UserList from './pages/admin/UserList';
+import UserCreate from './pages/admin/UserCreate';
+import UserEdit from './pages/admin/UserEdit';
+import RoleManagement from './pages/admin/RoleManagement';
+import AuditLogList from './pages/admin/AuditLogList';
+import TransactionList from './pages/admin/TransactionList';
+import QuestionBank from './pages/admin/QuestionBank';
+import QuestionForm from './pages/admin/QuestionForm';
+import ExamList from './pages/admin/ExamList';
 import ExamForm from './pages/admin/ExamForm';
 import AvailableExams from './pages/student/AvailableExams';
 import StudyPlanView from './pages/student/StudyPlanView';
@@ -268,141 +282,162 @@ function App() {
     return (
         <AuthProvider>
             <BrowserRouter>
-            </ProtectedRoute>
+                <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<LandingPage />} />
+                    <Route element={<GuestLayout />}>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Route>
+
+                    {/* Protected Routes */}
+                    <Route path="/dashboard" element={
+                        <ProtectedRoute>
+                            <Dashboard />
+                        </ProtectedRoute>
                     } />
-            <Route path="/daily-logs/create" element={
-                <ProtectedRoute>
-                    <DailyLogForm />
-                </ProtectedRoute>
-            } />
-            <Route path="/study-plans" element={
-                <ProtectedRoute>
-                    <StudyPlanView />
-                </ProtectedRoute>
-            } />
-            <Route path="/study-plans/create" element={
-                <ProtectedRoute>
-                    <StudyPlanForm />
-                </ProtectedRoute>
-            } />
-            <Route path="/study-plans/edit/:id" element={
-                <ProtectedRoute>
-                    <StudyPlanForm />
-                </ProtectedRoute>
-            } />
+                    <Route path="/daily-logs" element={
+                        <ProtectedRoute>
+                            <DailyLogList />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/daily-logs/create" element={
+                        <ProtectedRoute>
+                            <DailyLogForm />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/study-plans" element={
+                        <ProtectedRoute>
+                            <StudyPlanView />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/study-plans/create" element={
+                        <ProtectedRoute>
+                            <StudyPlanForm />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/study-plans/edit/:id" element={
+                        <ProtectedRoute>
+                            <StudyPlanForm />
+                        </ProtectedRoute>
+                    } />
 
-            {/* Admin Routes */}
-            <Route path="/admin" element={
-                <ProtectedRoute roles={['admin']}>
-                    <AdminDashboard />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/users" element={
-                <ProtectedRoute roles={['admin']}>
-                    <UserList />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/users/create" element={
-                <ProtectedRoute roles={['admin']}>
-                    <UserCreate />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/users/edit/:id" element={
-                <ProtectedRoute roles={['admin']}>
-                    <UserEdit />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/roles" element={
-                <ProtectedRoute roles={['admin']}>
-                    <RoleManagement />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/audit-logs" element={
-                <ProtectedRoute roles={['admin']}>
-                    <AuditLogList />
-                </ProtectedRoute>
-            } />
+                    {/* Admin Routes */}
+                    <Route path="/admin" element={
+                        <ProtectedRoute roles={['admin']}>
+                            <AdminDashboard />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/users" element={
+                        <ProtectedRoute roles={['admin']}>
+                            <UserList />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/users/create" element={
+                        <ProtectedRoute roles={['admin']}>
+                            <UserCreate />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/users/edit/:id" element={
+                        <ProtectedRoute roles={['admin']}>
+                            <UserEdit />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/roles" element={
+                        <ProtectedRoute roles={['admin']}>
+                            <RoleManagement />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/audit-logs" element={
+                        <ProtectedRoute roles={['admin']}>
+                            <AuditLogList />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/transactions" element={
+                        <ProtectedRoute roles={['admin']}>
+                            <TransactionList />
+                        </ProtectedRoute>
+                    } />
 
-            {/* Admin - Question Bank */}
-            <Route path="/admin/questions" element={
-                <ProtectedRoute roles={['admin', 'assistant']}>
-                    <QuestionBank />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/questions/create" element={
-                <ProtectedRoute roles={['admin', 'assistant']}>
-                    <QuestionForm />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/questions/:id/edit" element={
-                <ProtectedRoute roles={['admin', 'assistant']}>
-                    <QuestionForm />
-                </ProtectedRoute>
-            } />
+                    {/* Admin - Question Bank */}
+                    <Route path="/admin/questions" element={
+                        <ProtectedRoute roles={['admin', 'assistant']}>
+                            <QuestionBank />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/questions/create" element={
+                        <ProtectedRoute roles={['admin', 'assistant']}>
+                            <QuestionForm />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/questions/:id/edit" element={
+                        <ProtectedRoute roles={['admin', 'assistant']}>
+                            <QuestionForm />
+                        </ProtectedRoute>
+                    } />
 
-            {/* Admin - Exams */}
-            <Route path="/admin/exams" element={
-                <ProtectedRoute roles={['admin', 'assistant']}>
-                    <ExamList />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/exams/create" element={
-                <ProtectedRoute roles={['admin', 'assistant']}>
-                    <ExamForm />
-                </ProtectedRoute>
-            } />
-            <Route path="/admin/exams/:id/edit" element={
-                <ProtectedRoute roles={['admin', 'assistant']}>
-                    <ExamForm />
-                </ProtectedRoute>
-            } />
+                    {/* Admin - Exams */}
+                    <Route path="/admin/exams" element={
+                        <ProtectedRoute roles={['admin', 'assistant']}>
+                            <ExamList />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/exams/create" element={
+                        <ProtectedRoute roles={['admin', 'assistant']}>
+                            <ExamForm />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/admin/exams/:id/edit" element={
+                        <ProtectedRoute roles={['admin', 'assistant']}>
+                            <ExamForm />
+                        </ProtectedRoute>
+                    } />
 
-            {/* Admin - Weekly Resources */}
-            <Route path="/admin/resources" element={
-                <ProtectedRoute roles={['admin', 'assistant']}>
-                    <ResourceList />
-                </ProtectedRoute>
-            } />
+                    {/* Admin - Weekly Resources */}
+                    <Route path="/admin/resources" element={
+                        <ProtectedRoute roles={['admin', 'assistant']}>
+                            <ResourceList />
+                        </ProtectedRoute>
+                    } />
 
-            {/* Student - Exams */}
-            <Route path="/student/exams" element={
-                <ProtectedRoute>
-                    <AvailableExams />
-                </ProtectedRoute>
-            } />
-            <Route path="/student/exams/take/:studentExamId" element={
-                <ProtectedRoute>
-                    <TakeExam />
-                </ProtectedRoute>
-            } />
-            <Route path="/student/exams/results/:studentExamId" element={
-                <ProtectedRoute>
-                    <ExamResults />
-                </ProtectedRoute>
-            } />
+                    {/* Student - Exams */}
+                    <Route path="/student/exams" element={
+                        <ProtectedRoute>
+                            <AvailableExams />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/student/exams/take/:studentExamId" element={
+                        <ProtectedRoute>
+                            <TakeExam />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/student/exams/results/:studentExamId" element={
+                        <ProtectedRoute>
+                            <ExamResults />
+                        </ProtectedRoute>
+                    } />
 
-            {/* Student - Weekly Resources */}
-            <Route path="/weekly-resources" element={
-                <ProtectedRoute>
-                    <WeeklyResources />
-                </ProtectedRoute>
-            } />
+                    {/* Student - Weekly Resources */}
+                    <Route path="/weekly-resources" element={
+                        <ProtectedRoute>
+                            <WeeklyResources />
+                        </ProtectedRoute>
+                    } />
 
-            {/* Financial Module */}
-            <Route path="/subscription/plans" element={
-                <ProtectedRoute>
-                    <SubscriptionPlans />
-                </ProtectedRoute>
-            } />
-            {/* Payment Callback is public or protected? Usually public or protected. User must be logged in to frontend context. */}
-            <Route path="/payment/callback" element={
-                <ProtectedRoute>
-                    <PaymentResult />
-                </ProtectedRoute>
-            } />
-        </Routes>
-            </BrowserRouter >
-        </AuthProvider >
+                    {/* Financial Module */}
+                    <Route path="/subscription/plans" element={
+                        <ProtectedRoute>
+                            <SubscriptionPlans />
+                        </ProtectedRoute>
+                    } />
+                    <Route path="/payment/callback" element={
+                        <ProtectedRoute>
+                            <PaymentResult />
+                        </ProtectedRoute>
+                    } />
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
 
