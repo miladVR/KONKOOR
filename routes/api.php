@@ -41,7 +41,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/weekly-schedules/{id}/resources', [\App\Http\Controllers\Api\Admin\WeeklyScheduleController::class, 'attachResource']);
             Route::delete('/weekly-schedules/{id}/resources/{resourceId}', [\App\Http\Controllers\Api\Admin\WeeklyScheduleController::class, 'detachResource']);
             Route::put('/weekly-schedules/{id}/resources/{resourceId}/order', [\App\Http\Controllers\Api\Admin\WeeklyScheduleController::class, 'updateResourceOrder']);
-        });
+
 
         // Student Exam Routes
         Route::prefix('exams')->group(function () {
