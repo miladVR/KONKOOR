@@ -1,4 +1,14 @@
 import './bootstrap';
+
+// CRITICAL: Global error handler for startup crashes
+window.onerror = function (message, source, lineno, colno, error) {
+    const errorContainer = document.createElement('div');
+    errorContainer.style.cssText = 'position:fixed;top:0;left:0;width:100%;background:red;color:white;padding:20px;z-index:9999;white-space:pre-wrap;font-family:monospace;';
+    errorContainer.innerHTML = `<h1>Startup Error</h1><p>${message}</p><p>${source}:${lineno}:${colno}</p><p>${error ? error.stack : ''}</p>`;
+    document.body.appendChild(errorContainer);
+    console.error('Global Error:', error);
+};
+
 import '../css/app.css';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
