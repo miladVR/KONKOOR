@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { adminService } from '../../services/adminService';
+import adminService from '../../services/adminService';
 import { FaEye, FaSearch } from 'react-icons/fa';
 import moment from 'moment-jalaali';
 moment.loadPersian({ usePersianDigits: true });
