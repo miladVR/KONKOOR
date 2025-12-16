@@ -61,4 +61,10 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
+// Helper to get auth header for usage outside react context (services)
+export const getAuthHeader = () => {
+    const token = localStorage.getItem('token');
+    return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
 export const useAuth = () => useContext(AuthContext);
