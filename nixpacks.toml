@@ -1,11 +1,5 @@
-[providers]
-php = "8.3"
-
-[providers.php]
-extensions = ["gd", "pdo_pgsql", "redis", "zip", "bcmath", "intl"]
-
 [phases.setup]
-nixPkgs = ["nodejs_20"]
+nixPkgs = ["php83", "php83Extensions.gd", "php83Extensions.pdo_pgsql", "php83Extensions.redis", "nodejs_20"]
 
 [phases.install]
 cmds = [
@@ -23,3 +17,4 @@ cmds = [
 
 [start]
 cmd = "php artisan serve --host=0.0.0.0 --port=$PORT"
+
